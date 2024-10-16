@@ -39,7 +39,7 @@ public class BookingService {
 
         Class bookedClass = classRepository.findById(updatedBooking.getClassId())
                 .orElseThrow(() -> new RuntimeException("Invalid Class ID. Please provide a valid class ID."));
-
+        
         if (!isDateInClassRange(bookedClass, updatedBooking.getDate())) {
             throw new RuntimeException("Booking date must be in the range of the class start date and end date.");
         }

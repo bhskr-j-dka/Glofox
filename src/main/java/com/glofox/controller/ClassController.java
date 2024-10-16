@@ -4,7 +4,7 @@ import com.glofox.model.Class;
 import com.glofox.model.ErrorResponse;
 import com.glofox.service.ClassService;
 
-import jakarta.validation.Valid;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class ClassController {
     private ClassService classService;
 
     @PostMapping
-    public ResponseEntity<?> createClass(@Valid @RequestBody Class newClass) {
+    public ResponseEntity<?> createClass(@RequestBody Class newClass) {
         try {
             Class createdClass = classService.createClass(newClass);
             return new ResponseEntity<>(createdClass, HttpStatus.CREATED);
@@ -45,7 +45,7 @@ public class ClassController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateClass(@PathVariable Long id, @Valid @RequestBody Class updatedClass) {
+    public ResponseEntity<?> updateClass(@PathVariable Long id,@RequestBody Class updatedClass) {
         try {
             Class updated = classService.updateClass(id, updatedClass);
             return ResponseEntity.ok(updated);

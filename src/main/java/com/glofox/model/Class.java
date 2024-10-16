@@ -29,19 +29,15 @@ public class Class {
     private Long id;
 
     @JsonProperty("name")
-    @NotEmpty(message = "Class name cannot be empty.")
     private String name;  // The name of the class (e.g., Pilates, Yoga)
 
     @JsonProperty("startDate")
-    @NotNull(message = "Start date cannot be null.")
     private LocalDate startDate;  // The start date of the class series
 
     @JsonProperty("endDate")
-    @NotNull(message = "End date cannot be null.")
     private LocalDate endDate;  // The end date of the class series
 
     @JsonProperty("capacity")
-    @NotNull(message = "Capacity cannot be null.")
     private Integer capacity;  // The maximum number of attendees for each class session
 
 	public Long getId() {
@@ -84,5 +80,6 @@ public class Class {
 		this.capacity = capacity;
 	}
 
+	
    
 }

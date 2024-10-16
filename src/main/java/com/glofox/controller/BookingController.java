@@ -4,7 +4,6 @@ import com.glofox.model.Booking;
 import com.glofox.model.ErrorResponse;
 import com.glofox.service.BookingService;
 
-import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping
-    public ResponseEntity<?> createBooking(@Valid @RequestBody Booking newBooking) {
+    public ResponseEntity<?> createBooking(@RequestBody Booking newBooking) {
         try {
             Booking createdBooking = bookingService.createBooking(newBooking);
             return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
@@ -45,7 +44,7 @@ public class BookingController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateBooking(@PathVariable Long id, @Valid @RequestBody Booking updatedBooking) {
+    public ResponseEntity<?> updateBooking(@PathVariable Long id,@RequestBody Booking updatedBooking) {
         try {
             Booking updated = bookingService.updateBooking(id, updatedBooking);
             return ResponseEntity.ok(updated);
