@@ -16,6 +16,10 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - [Validation](#validation)
 - [Future Improvements](#future-improvements)
 
+### Architecture Diagram
+![Architecture Diagram](images/architecture-diagram.png)
+
+
 ## Features
 
 - Create and manage fitness classes (e.g., Yoga, Zumba).
@@ -47,7 +51,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 1. Clone the repository:
    ```bash
    git clone https://github.com/bhskr-j-dka/glofox.git
-   cd glofox-saas
+   cd glofox
    ```
 
 2. Build the project:
@@ -220,10 +224,11 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 
 ## Future Improvements
 
+- The feature of handeling overbooking.
+- Handle concurrency as at same time multiple use can use same resources.
 - Integrate a database like PostgreSQL for production use.
 - Implement pagination for retrieving large sets of classes or bookings.
 - Add user authentication for secure access to APIs.
-- Enhance error handling to cover more edge cases.
 
 ## License
 
