@@ -16,6 +16,10 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - [Validation](#validation)
 - [Future Improvements](#future-improvements)
 
+### Architecture Diagram
+![Architecture Diagram](images/architecture-diagram.png)
+
+
 ## Features
 
 - Create and manage fitness classes (e.g., Yoga, Zumba).
