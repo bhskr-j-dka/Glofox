@@ -224,10 +224,11 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 
 ## Future Improvements
 
+- The feature of handeling overbooking.
+- Handle concurrency as at same time multiple use can use same resources.
 - Integrate a database like PostgreSQL for production use.
 - Implement pagination for retrieving large sets of classes or bookings.
 - Add user authentication for secure access to APIs.
-- Enhance error handling to cover more edge cases.
 
 ## License
 
