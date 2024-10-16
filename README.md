@@ -46,7 +46,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-repo/glofox-saas.git](https://github.com/bhskr-j-dka/glofox.git)
+   git clone https://github.com/bhskr-j-dka/glofox.git
    cd glofox-saas
    ```
 
