@@ -28,7 +28,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - In-memory data management with H2 database for testing.
 - Custom error handling for better debugging and user feedback.
 - Validation rules to ensure data accuracy.
-- Test coverage of **95%** to ensure robustness.
+- Test coverage of **93%** to ensure robustness.
 
 ## Tech Stack
 
