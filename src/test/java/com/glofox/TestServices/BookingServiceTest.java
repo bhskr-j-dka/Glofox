@@ -161,4 +161,26 @@ class BookingServiceTest {
         assertEquals(1, bookings.size());
         assertEquals("John Doe", bookings.get(0).getName());
     }
+
+    @Test
+    void testCreateBooking_EmptyName() {
+        booking.setName("");
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            bookingService.createBooking(booking);
+        });
+
+        assertEquals("Booking name cannot be empty.", exception.getMessage());
+    }
+
+    @Test
+    void testCreateBooking_NullDate() {
+        booking.setDate(null);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            bookingService.createBooking(booking);
+        });
+
+        assertEquals("Booking date cannot be null.", exception.getMessage());
+    }
 }

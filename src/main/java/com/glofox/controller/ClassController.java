@@ -25,6 +25,7 @@ public class ClassController {
     @PostMapping
     public ResponseEntity<?> createClass(@RequestBody Class newClass) {
         try {
+        	
             Class createdClass = classService.createClass(newClass);
             return new ResponseEntity<>(createdClass, HttpStatus.CREATED);
         } catch (RuntimeException e) {

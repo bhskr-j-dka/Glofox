@@ -23,6 +23,7 @@ public class BookingService {
     private ClassRepository classRepository;
 
     public Booking createBooking(Booking newBooking) {
+    	validateBookingInput(newBooking);
         Class bookedClass = classRepository.findById(newBooking.getClassId())
                 .orElseThrow(() -> new RuntimeException("Invalid Class ID. Please provide a valid class ID."));
 
@@ -34,6 +35,8 @@ public class BookingService {
     }
 
     public Booking updateBooking(Long id, Booking updatedBooking) {
+    	
+    	validateBookingInput(updatedBooking);
         Booking existingBooking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
 
@@ -59,5 +62,14 @@ public class BookingService {
 
     private boolean isDateInClassRange(Class clazz, LocalDate date) {
         return !(date.isBefore(clazz.getStartDate()) || date.isAfter(clazz.getEndDate()));
+    }
+    private void validateBookingInput(Booking booking) {
+        if (booking.getName() == null || booking.getName().isEmpty()) {
+            throw new RuntimeException("Booking name cannot be empty.");
+        }
+        if (booking.getDate() == null) {
+            throw new RuntimeException("Booking date cannot be null.");
+        }
+       
     }
 }

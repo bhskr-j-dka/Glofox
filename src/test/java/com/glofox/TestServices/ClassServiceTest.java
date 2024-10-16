@@ -43,6 +43,7 @@ class ClassServiceTest {
         newClass.setName("Yoga Class");
         newClass.setStartDate(LocalDate.of(2024, 10, 1));
         newClass.setEndDate(LocalDate.of(2024, 10, 10));
+        newClass.setCapacity(10); // Initialize capacity
 
         // Initialize a sample existing Class object for updates
         existingClass = new Class();
@@ -50,6 +51,7 @@ class ClassServiceTest {
         existingClass.setName("Pilates Class");
         existingClass.setStartDate(LocalDate.of(2024, 10, 5));
         existingClass.setEndDate(LocalDate.of(2024, 10, 15));
+        existingClass.setCapacity(15); // Initialize capacity
     }
 
     @Test
@@ -89,14 +91,59 @@ class ClassServiceTest {
     }
 
     @Test
+    void testCreateClass_NameIsEmpty() {
+        newClass.setName("");
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            classService.createClass(newClass);
+        });
+
+        assertEquals("Class name cannot be empty.", exception.getMessage());
+    }
+
+    @Test
+    void testCreateClass_StartDateIsNull() {
+        newClass.setStartDate(null);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            classService.createClass(newClass);
+        });
+
+        assertEquals("Start date cannot be null.", exception.getMessage());
+    }
+
+    @Test
+    void testCreateClass_EndDateIsNull() {
+        newClass.setEndDate(null);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            classService.createClass(newClass);
+        });
+
+        assertEquals("End date cannot be null.", exception.getMessage());
+    }
+
+    @Test
+    void testCreateClass_CapacityIsZero() {
+        newClass.setCapacity(0);
+
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            classService.createClass(newClass);
+        });
+
+        assertEquals("Capacity must be a positive integer.", exception.getMessage());
+    }
+
+    @Test
     void testUpdateClass_Success() {
         when(classRepository.findById(1L)).thenReturn(Optional.of(existingClass));
         when(classRepository.save(any(Class.class))).thenReturn(existingClass);
 
         Class updatedClass = new Class();
         updatedClass.setName("Updated Pilates Class");
-        updatedClass.setStartDate(LocalDate.of(2024, 10, 5));
+        updatedClass.setStartDate(LocalDate.of(2024, 10, 10));
         updatedClass.setEndDate(LocalDate.of(2024, 10, 20));
+        updatedClass.setCapacity(20); // Set a new capacity
 
         Class result = classService.updateClass(1L, updatedClass);
 
