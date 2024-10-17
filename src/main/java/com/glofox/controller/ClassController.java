@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Controller for handling class creation, retrieval, update, and deletion.
- */
+
 @RestController
 @RequestMapping("/classes")
 public class ClassController {

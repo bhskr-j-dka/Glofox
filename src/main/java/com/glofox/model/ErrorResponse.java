@@ -1,8 +1,6 @@
 package com.glofox.model;
 
-/**
- * Model for error response.
- */
+
 public class ErrorResponse {
     private String message;
     private int statusCode;

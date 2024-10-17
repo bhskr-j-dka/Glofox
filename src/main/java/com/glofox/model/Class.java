@@ -13,9 +13,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Entity representing a Class.
- */
 @Entity
 @Data 
 @NoArgsConstructor

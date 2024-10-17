@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Service class to handle business logic related to classes.
- */
+
 @Service
 public class ClassService {
 

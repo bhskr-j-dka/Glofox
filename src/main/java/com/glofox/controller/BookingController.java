@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Controller for handling bookings creation, retrieval, update, and deletion.
- */
 @RestController
 @RequestMapping("/bookings")
 public class BookingController {

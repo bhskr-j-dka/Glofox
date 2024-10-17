@@ -9,12 +9,7 @@ import java.time.LocalDate;
 
 
 public interface ClassRepository extends JpaRepository<Class, Long> {
-    /**
-     * Finds classes that overlap with the given date range.
-     * 
-     * @param startDate The start date to check against.
-     * @param endDate The end date to check against.
-     */
+   
 	 @Query("SELECT CASE WHEN COUNT(c) > 0 THEN true ELSE false END " +
 	           "FROM Class c " +
 	           "WHERE (:classId IS NULL OR c.id != :classId) " +
