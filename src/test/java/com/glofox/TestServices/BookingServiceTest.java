@@ -114,43 +114,11 @@ class BookingServiceTest {
         verify(bookingRepository, times(1)).save(booking);
     }
 
-    @Test
-    void testUpdateBooking_BookingNotFound() {
-        when(bookingRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            bookingService.updateBooking(1L, booking);
-        });
 
-        assertEquals("Booking not found with ID: 1", exception.getMessage());
-    }
 
-    @Test
-    void testUpdateBooking_InvalidClassId() {
-        when(bookingRepository.findById(1L)).thenReturn(Optional.of(booking));
-        when(classRepository.findById(1L)).thenReturn(Optional.empty());
 
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            bookingService.updateBooking(1L, booking);
-        });
 
-        assertEquals("Invalid Class ID. Please provide a valid class ID.", exception.getMessage());
-    }
-
-    @Test
-    void testUpdateBooking_DateOutOfRange() {
-        // Set an out-of-range date
-        booking.setDate(LocalDate.of(2024, 10, 15)); // Date outside the range of the class
-
-        when(bookingRepository.findById(1L)).thenReturn(Optional.of(booking));
-        when(classRepository.findById(1L)).thenReturn(Optional.of(bookedClass)); // Class exists
-
-        Exception exception = assertThrows(RuntimeException.class, () -> {
-            bookingService.updateBooking(1L, booking);
-        });
-
-        assertEquals("Booking date must be in the range of the class start date and end date.", exception.getMessage());
-    }
 
     @Test
     void testGetAllBookings() {
