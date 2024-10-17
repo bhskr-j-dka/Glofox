@@ -13,7 +13,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - [API Documentation](#api-documentation)
 - [Database Configuration](#database-configuration)
 - [Constraints](#constraints)
-- [Test_coverage](#test_coverage)
+- [Code_coverage](#code_coverage)
 - [Future Improvements](#future-improvements)
 
 ### Architecture Diagram
@@ -222,7 +222,7 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 - **Class Date Overlap**: A new class cannot overlap with the date range of an existing class.
 - **Booking Date Validation**: The booking date must fall within the start and end date of the class it is associated with.
 
-## Test_coverage
+## Code_coverage
 ![Code_coverage](images/code_coverage.png)
 ## Future Improvements
 
