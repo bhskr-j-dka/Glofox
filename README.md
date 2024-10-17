@@ -28,7 +28,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - In-memory data management with H2 database for testing.
 - Custom error handling for better debugging and user feedback.
 - Validation rules to ensure data accuracy.
-- Test coverage of **95%** to ensure robustness.
+- Test coverage of **93%** to ensure robustness.
 
 ## Tech Stack
 
@@ -64,14 +64,15 @@ This project is a RESTful API for managing classes and bookings, designed as par
    mvn spring-boot:run
    ```
 
-4. Access the H2 database console:
+4. Access the Swagger UI for API documentation:
+   - URL: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+5. Access the H2 database console:
    - URL: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
    - JDBC URL: `jdbc:h2:mem:testdb`
    - Username: `sa`
    - Password: `password`
 
-5. Access the Swagger UI for API documentation:
-   - URL: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ## API Documentation
 
@@ -232,6 +233,6 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License.
 
 ---
