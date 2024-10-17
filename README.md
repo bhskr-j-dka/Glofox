@@ -23,12 +23,12 @@ This project is a RESTful API for managing classes and bookings, designed as par
 ## Features
 
 - Create and manage fitness classes (e.g., Yoga, Zumba).
-- Book a spot in a class with date and capacity checks.
-- RESTful APIs for creating, updating, retrieving, and deleting classes and bookings.
-- In-memory data management with H2 database for testing.
+- Book a spot in a class with date, name and class_id.
+- RESTful APIs for creating, updating, and retrieving classes and bookings.
+- In-memory data management with H2 database.
 - Custom error handling for better debugging and user feedback.
 - Validation rules to ensure data accuracy.
-- Test coverage of **93%** to ensure robustness.
+- Test coverage of over **94%** to ensure robustness.
 
 ## Tech Stack
 
@@ -149,7 +149,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - **POST /bookings**: Create a new booking.
   - **Validations**:
     - **Booking Date Within Class Range**: The booking date must fall within the class's start and end date.
-    - **Capacity Check**: A booking is only allowed if the class has available capacity.
+      
   - **Sample request body**:
     ```json
     {
@@ -173,7 +173,6 @@ This project is a RESTful API for managing classes and bookings, designed as par
           "error": "Invalid Class ID. Please provide a valid class ID."
         }
         ```
-      - The class capacity is exceeded:
 
 
 - **GET /bookings**: Retrieve all bookings.
@@ -182,7 +181,6 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - **PUT /bookings/{id}**: Update an existing booking by ID.
   - **Validations**:
     - **Booking Date Within Class Range**: The booking date must remain within the class's start and end date after an update.
-    - **Capacity Check**: Ensure the updated booking does not exceed the class's capacity.
   - **Sample request body**:
     ```json
     {
