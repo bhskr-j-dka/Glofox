@@ -13,7 +13,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - [API Documentation](#api-documentation)
 - [Database Configuration](#database-configuration)
 - [Constraints](#constraints)
-- [Validation](#validation)
+- [Code_coverage](#code_coverage)
 - [Future Improvements](#future-improvements)
 
 ### Architecture Diagram
@@ -23,19 +23,18 @@ This project is a RESTful API for managing classes and bookings, designed as par
 ## Features
 
 - Create and manage fitness classes (e.g., Yoga, Zumba).
-- Book a spot in a class with date and capacity checks.
-- RESTful APIs for creating, updating, retrieving, and deleting classes and bookings.
-- In-memory data management with H2 database for testing.
+- Book a spot in a class with date, name and class_id.
+- RESTful APIs for creating, updating, and retrieving classes and bookings.
+- In-memory data management with H2 database.
 - Custom error handling for better debugging and user feedback.
 - Validation rules to ensure data accuracy.
-- Test coverage of **93%** to ensure robustness.
+- Test coverage of over **94%** to ensure robustness.
 
 ## Tech Stack
 
 - **Java 17**
 - **Spring Boot**: For building RESTful APIs.
 - **H2 Database**: In-memory database for testing.
-- **Jakarta Validation**: For validating input data.
 - **Swagger UI**: API documentation and testing.
 - **Maven**: Dependency management and build automation.
 
@@ -150,7 +149,7 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - **POST /bookings**: Create a new booking.
   - **Validations**:
     - **Booking Date Within Class Range**: The booking date must fall within the class's start and end date.
-    - **Capacity Check**: A booking is only allowed if the class has available capacity.
+      
   - **Sample request body**:
     ```json
     {
@@ -174,7 +173,6 @@ This project is a RESTful API for managing classes and bookings, designed as par
           "error": "Invalid Class ID. Please provide a valid class ID."
         }
         ```
-      - The class capacity is exceeded:
 
 
 - **GET /bookings**: Retrieve all bookings.
@@ -183,7 +181,6 @@ This project is a RESTful API for managing classes and bookings, designed as par
 - **PUT /bookings/{id}**: Update an existing booking by ID.
   - **Validations**:
     - **Booking Date Within Class Range**: The booking date must remain within the class's start and end date after an update.
-    - **Capacity Check**: Ensure the updated booking does not exceed the class's capacity.
   - **Sample request body**:
     ```json
     {
@@ -223,6 +220,8 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 - **Class Date Overlap**: A new class cannot overlap with the date range of an existing class.
 - **Booking Date Validation**: The booking date must fall within the start and end date of the class it is associated with.
 
+## Code_coverage
+![Code_coverage](images/code_coverage.png)
 ## Future Improvements
 
 - The feature of handeling overbooking.
