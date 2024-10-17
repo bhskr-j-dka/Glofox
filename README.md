@@ -233,6 +233,6 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License.
 
 ---
