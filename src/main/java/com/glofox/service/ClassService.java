@@ -40,27 +40,27 @@ public class ClassService {
         return classRepository.findAll();
     }
     
-    private void validateClass(Class clazz, Long classIdToExclude) {
-        if (clazz.getName() == null || clazz.getName().isEmpty()) {
+    private void validateClass(Class classToValidate, Long classIdToExclude) {
+        if (classToValidate.getName() == null || classToValidate.getName().isEmpty()) {
             throw new RuntimeException("Class name cannot be empty.");
         }
-        if (clazz.getStartDate() == null) {
+        if (classToValidate.getStartDate() == null) {
             throw new RuntimeException("Start date cannot be null.");
         }
-        if (clazz.getEndDate() == null) {
+        if (classToValidate.getEndDate() == null) {
             throw new RuntimeException("End date cannot be null.");
         }
-        if (clazz.getCapacity() == null || clazz.getCapacity() <= 0) {
+        if (classToValidate.getCapacity() == null || classToValidate.getCapacity() <= 0) {
             throw new RuntimeException("Capacity must be a positive integer.");
         }
-        if (clazz.getStartDate().isAfter(clazz.getEndDate())) {
+        if (classToValidate.getStartDate().isAfter(classToValidate.getEndDate())) {
             throw new RuntimeException("The start date must be on or before the end date.");
         }
 
         // Check for overlapping classes, excluding the specified class ID (for updates).
         boolean hasOverlap = classRepository.existsOverlappingClasses(
-                clazz.getStartDate(),
-                clazz.getEndDate(),
+        		classToValidate.getStartDate(),
+        		classToValidate.getEndDate(),
                 classIdToExclude
         );
         if (hasOverlap) {

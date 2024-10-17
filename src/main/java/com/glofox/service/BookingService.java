@@ -28,6 +28,7 @@ public class BookingService {
     public Booking updateBooking(Long id, Booking updatedBooking) {
     	
     	validateBooking(updatedBooking);
+    	
         Booking existingBooking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
 

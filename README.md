@@ -224,11 +224,14 @@ The project uses H2 as an in-memory database for simplicity and ease of testing.
 ![Code_coverage](images/code_coverage.png)
 ## Future Improvements
 
-- The feature of handeling overbooking.
-- Handle concurrency as at same time multiple use can use same resources.
+- The feature of handling overbooking.
+- Handle concurrency as multiple users may access the same resources at the same time.
+- Use of isActive Flag: Introduce an isActive field for both Class and Booking entities. This allows for soft deletion, where records can be marked inactive instead of permanently deleted, aiding in better tracking and auditing.
+- Booking Restrictions: Include an additional constraint in the Booking entity to ensure that the same user (identified by a unique key) cannot book the same class for the same date. This would prevent duplicate bookings and enhance booking logic.
 - Integrate a database like PostgreSQL for production use.
 - Implement pagination for retrieving large sets of classes or bookings.
 - Add user authentication for secure access to APIs.
+
 
 ## License
 

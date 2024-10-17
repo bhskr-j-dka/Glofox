@@ -19,7 +19,7 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping
-    public ResponseEntity<?> createBooking(@RequestBody Booking newBooking) {
+    public ResponseEntity<Object> createBooking(@RequestBody Booking newBooking) {
         try {
             Booking createdBooking = bookingService.createBooking(newBooking);
             return new ResponseEntity<>(createdBooking, HttpStatus.CREATED);
@@ -39,9 +39,9 @@ public class BookingController {
         
         return ResponseEntity.ok(bookings);
     }
-
+    
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateBooking(@PathVariable Long id,@RequestBody Booking updatedBooking) {
+    public ResponseEntity<Object> updateBooking(@PathVariable Long id,@RequestBody Booking updatedBooking) {
         try {
             Booking updated = bookingService.updateBooking(id, updatedBooking);
             return ResponseEntity.ok(updated);

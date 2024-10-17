@@ -43,7 +43,7 @@ class BookingControllerTest {
         booking.setId(1L); // Set an ID for the created booking
         when(bookingService.createBooking(any(Booking.class))).thenReturn(booking);
 
-        ResponseEntity<?> responseEntity = bookingController.createBooking(booking);
+        ResponseEntity<Object> responseEntity = bookingController.createBooking(booking);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(booking, responseEntity.getBody());
@@ -55,7 +55,7 @@ class BookingControllerTest {
         String errorMessage = "Invalid booking data";
         when(bookingService.createBooking(any(Booking.class))).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<?> responseEntity = bookingController.createBooking(new Booking());
+        ResponseEntity<Object> responseEntity = bookingController.createBooking(new Booking());
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         ErrorResponse errorResponse = (ErrorResponse) responseEntity.getBody();
@@ -93,7 +93,7 @@ class BookingControllerTest {
         updatedBooking.setId(bookingId);
         when(bookingService.updateBooking(eq(bookingId), any(Booking.class))).thenReturn(updatedBooking);
 
-        ResponseEntity<?> responseEntity = bookingController.updateBooking(bookingId, updatedBooking);
+        ResponseEntity<Object> responseEntity = bookingController.updateBooking(bookingId, updatedBooking);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(updatedBooking, responseEntity.getBody());
@@ -106,7 +106,7 @@ class BookingControllerTest {
         String errorMessage = "Booking not found";
         when(bookingService.updateBooking(eq(bookingId), any(Booking.class))).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<?> responseEntity = bookingController.updateBooking(bookingId, new Booking());
+        ResponseEntity<Object> responseEntity = bookingController.updateBooking(bookingId, new Booking());
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         ErrorResponse errorResponse = (ErrorResponse) responseEntity.getBody();

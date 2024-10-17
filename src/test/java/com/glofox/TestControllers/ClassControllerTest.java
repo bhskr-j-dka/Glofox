@@ -44,7 +44,7 @@ class ClassControllerTest {
         newClass.setId(1L); // Set an ID for the created class
         when(classService.createClass(any(Class.class))).thenReturn(newClass);
 
-        ResponseEntity<?> responseEntity = classController.createClass(newClass);
+        ResponseEntity<Object> responseEntity = classController.createClass(newClass);
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(newClass, responseEntity.getBody());
@@ -56,7 +56,7 @@ class ClassControllerTest {
         String errorMessage = "Invalid class data";
         when(classService.createClass(any(Class.class))).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<?> responseEntity = classController.createClass(new Class());
+        ResponseEntity<Object> responseEntity = classController.createClass(new Class());
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         ErrorResponse errorResponse = (ErrorResponse) responseEntity.getBody();
@@ -94,7 +94,7 @@ class ClassControllerTest {
         updatedClass.setId(classId);
         when(classService.updateClass(eq(classId), any(Class.class))).thenReturn(updatedClass);
 
-        ResponseEntity<?> responseEntity = classController.updateClass(classId, updatedClass);
+        ResponseEntity<Object> responseEntity = classController.updateClass(classId, updatedClass);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(updatedClass, responseEntity.getBody());
@@ -107,7 +107,7 @@ class ClassControllerTest {
         String errorMessage = "Class not found";
         when(classService.updateClass(eq(classId), any(Class.class))).thenThrow(new RuntimeException(errorMessage));
 
-        ResponseEntity<?> responseEntity = classController.updateClass(classId, new Class());
+        ResponseEntity<Object> responseEntity = classController.updateClass(classId, new Class());
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
         ErrorResponse errorResponse = (ErrorResponse) responseEntity.getBody();

@@ -21,7 +21,7 @@ public class ClassController {
     private ClassService classService;
 
     @PostMapping
-    public ResponseEntity<?> createClass(@RequestBody Class newClass) {
+    public ResponseEntity<Object> createClass(@RequestBody Class newClass) {
         try {
         	
             Class createdClass = classService.createClass(newClass);
@@ -44,7 +44,7 @@ public class ClassController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateClass(@PathVariable Long id,@RequestBody Class updatedClass) {
+    public ResponseEntity<Object> updateClass(@PathVariable Long id,@RequestBody Class updatedClass) {
         try {
             Class updated = classService.updateClass(id, updatedClass);
             return ResponseEntity.ok(updated);
