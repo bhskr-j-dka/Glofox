@@ -64,14 +64,15 @@ This project is a RESTful API for managing classes and bookings, designed as par
    mvn spring-boot:run
    ```
 
-4. Access the H2 database console:
+4. Access the Swagger UI for API documentation:
+   - URL: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+5. Access the H2 database console:
    - URL: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
    - JDBC URL: `jdbc:h2:mem:testdb`
    - Username: `sa`
    - Password: `password`
 
-5. Access the Swagger UI for API documentation:
-   - URL: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ## API Documentation
 
