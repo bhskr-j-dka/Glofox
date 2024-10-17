@@ -140,9 +140,10 @@ class BookingServiceTest {
     @Test
     void testUpdateBooking_DateOutOfRange() {
         // Set an out-of-range date
-        booking.setDate(LocalDate.of(2024, 10, 15));
+        booking.setDate(LocalDate.of(2024, 10, 15)); // Date outside the range of the class
+
         when(bookingRepository.findById(1L)).thenReturn(Optional.of(booking));
-        when(classRepository.findById(1L)).thenReturn(Optional.of(bookedClass));
+        when(classRepository.findById(1L)).thenReturn(Optional.of(bookedClass)); // Class exists
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
             bookingService.updateBooking(1L, booking);

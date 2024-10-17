@@ -57,7 +57,7 @@ class ClassServiceTest {
     @Test
     void testCreateClass_Success() {
         // Mock the behavior of class repository
-        when(classRepository.existsOverlappingClasses(any(LocalDate.class), any(LocalDate.class))).thenReturn(false);
+        when(classRepository.existsOverlappingClasses(any(LocalDate.class), any(LocalDate.class), isNull())).thenReturn(false);
         when(classRepository.save(any(Class.class))).thenReturn(newClass);
 
         Class createdClass = classService.createClass(newClass);
@@ -81,7 +81,7 @@ class ClassServiceTest {
 
     @Test
     void testCreateClass_OverlapWithExistingClasses() {
-        when(classRepository.existsOverlappingClasses(any(LocalDate.class), any(LocalDate.class))).thenReturn(true);
+        when(classRepository.existsOverlappingClasses(any(LocalDate.class), any(LocalDate.class), isNull())).thenReturn(true);
 
         Exception exception = assertThrows(RuntimeException.class, () -> {
             classService.createClass(newClass);

@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.glofox.model.Class;
 import com.glofox.repository.ClassRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,11 +29,12 @@ class ClassRepositoryTest {
     void testExistsOverlappingClasses_True() {
         LocalDate startDate = LocalDate.of(2024, 10, 1);
         LocalDate endDate = LocalDate.of(2024, 10, 10);
+        Long classId = null; // For a new class
 
         // Mocking the behavior of the repository
-        when(classRepository.existsOverlappingClasses(startDate, endDate)).thenReturn(true);
+        when(classRepository.existsOverlappingClasses(startDate, endDate, classId)).thenReturn(true);
 
-        boolean result = classRepository.existsOverlappingClasses(startDate, endDate);
+        boolean result = classRepository.existsOverlappingClasses(startDate, endDate, classId);
 
         assertTrue(result, "Expected overlapping classes to exist");
     }
@@ -43,12 +43,41 @@ class ClassRepositoryTest {
     void testExistsOverlappingClasses_False() {
         LocalDate startDate = LocalDate.of(2024, 10, 11);
         LocalDate endDate = LocalDate.of(2024, 10, 20);
+        Long classId = null; // For a new class
 
         // Mocking the behavior of the repository
-        when(classRepository.existsOverlappingClasses(startDate, endDate)).thenReturn(false);
+        when(classRepository.existsOverlappingClasses(startDate, endDate, classId)).thenReturn(false);
 
-        boolean result = classRepository.existsOverlappingClasses(startDate, endDate);
+        boolean result = classRepository.existsOverlappingClasses(startDate, endDate, classId);
 
         assertFalse(result, "Expected no overlapping classes to exist");
+    }
+
+    @Test
+    void testExistsOverlappingClasses_TrueWithExistingClassId() {
+        LocalDate startDate = LocalDate.of(2024, 10, 1);
+        LocalDate endDate = LocalDate.of(2024, 10, 10);
+        Long classId = 1L; // Existing class ID
+
+        // Mocking the behavior of the repository
+        when(classRepository.existsOverlappingClasses(startDate, endDate, classId)).thenReturn(true);
+
+        boolean result = classRepository.existsOverlappingClasses(startDate, endDate, classId);
+
+        assertTrue(result, "Expected overlapping classes to exist with existing class ID");
+    }
+
+    @Test
+    void testExistsOverlappingClasses_FalseWithExistingClassId() {
+        LocalDate startDate = LocalDate.of(2024, 10, 11);
+        LocalDate endDate = LocalDate.of(2024, 10, 20);
+        Long classId = 1L; // Existing class ID
+
+        // Mocking the behavior of the repository
+        when(classRepository.existsOverlappingClasses(startDate, endDate, classId)).thenReturn(false);
+
+        boolean result = classRepository.existsOverlappingClasses(startDate, endDate, classId);
+
+        assertFalse(result, "Expected no overlapping classes to exist with existing class ID");
     }
 }

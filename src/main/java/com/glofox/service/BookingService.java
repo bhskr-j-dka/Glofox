@@ -23,29 +23,15 @@ public class BookingService {
     private ClassRepository classRepository;
 
     public Booking createBooking(Booking newBooking) {
-    	validateBookingInput(newBooking);
-        Class bookedClass = classRepository.findById(newBooking.getClassId())
-                .orElseThrow(() -> new RuntimeException("Invalid Class ID. Please provide a valid class ID."));
-
-        if (!isDateInClassRange(bookedClass, newBooking.getDate())) {
-            throw new RuntimeException("Booking date must be in the range of the class start date and end date.");
-        }
-
+    	validateBooking(newBooking);
         return bookingRepository.save(newBooking);
     }
 
     public Booking updateBooking(Long id, Booking updatedBooking) {
     	
-    	validateBookingInput(updatedBooking);
+    	validateBooking(updatedBooking);
         Booking existingBooking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found with ID: " + id));
-
-        Class bookedClass = classRepository.findById(updatedBooking.getClassId())
-                .orElseThrow(() -> new RuntimeException("Invalid Class ID. Please provide a valid class ID."));
-        
-        if (!isDateInClassRange(bookedClass, updatedBooking.getDate())) {
-            throw new RuntimeException("Booking date must be in the range of the class start date and end date.");
-        }
 
         existingBooking.setClassId(updatedBooking.getClassId());
         existingBooking.setDate(updatedBooking.getDate());
@@ -60,16 +46,20 @@ public class BookingService {
         return bookingRepository.findAll();
     }
 
-    private boolean isDateInClassRange(Class clazz, LocalDate date) {
-        return !(date.isBefore(clazz.getStartDate()) || date.isAfter(clazz.getEndDate()));
-    }
-    private void validateBookingInput(Booking booking) {
+    private void validateBooking(Booking booking) {
         if (booking.getName() == null || booking.getName().isEmpty()) {
             throw new RuntimeException("Booking name cannot be empty.");
         }
         if (booking.getDate() == null) {
             throw new RuntimeException("Booking date cannot be null.");
         }
-       
+
+        // Check if the associated class exists and validate the booking date range
+        Class bookedClass = classRepository.findById(booking.getClassId())
+                .orElseThrow(() -> new RuntimeException("Invalid Class ID. Please provide a valid class ID."));
+
+        if (booking.getDate().isBefore(bookedClass.getStartDate()) || booking.getDate().isAfter(bookedClass.getEndDate())) {
+            throw new RuntimeException("Booking date must be in the range of the class start date and end date.");
+        }
     }
 }
